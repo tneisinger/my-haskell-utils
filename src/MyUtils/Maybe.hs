@@ -1,4 +1,4 @@
 module MyUtils.Maybe where
 
-maybeIf :: Bool -> a -> Maybe a
-maybeIf b result = if b then Just result else Nothing
+justIf :: Bool -> a -> Maybe a
+justIf b result = if b then Just result else Nothing

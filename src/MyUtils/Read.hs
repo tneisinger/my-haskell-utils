@@ -3,8 +3,8 @@ module MyUtils.Read where
 import Data.Char (isDigit)
 
 import MyUtils.Char (isDigitOrDot)
-import MyUtils.Maybe (maybeIf)
-import MyUtils.List (justN)
+import MyUtils.Maybe (justIf)
+import MyUtils.List (trueForZeroTo)
 
 isReadableInteger :: String -> Bool
 isReadableInteger [] = False
@@ -14,13 +14,14 @@ isReadableInteger xs = all isDigit xs
 isReadableFloat :: String -> Bool
 isReadableFloat [] = False
 isReadableFloat (x:[]) = isDigit x
-isReadableFloat ('-':x:xs) =
-  isDigit x && all isDigitOrDot xs && justN 1 (== '.') xs && isDigit (last xs)
-isReadableFloat (x:xs) =
-  isDigit x && all isDigitOrDot xs && justN 1 (== '.') xs && isDigit (last xs)
+isReadableFloat ('-':x:[]) = isDigit x
+isReadableFloat ('-':x:xs) = isDigit x && all isDigitOrDot xs &&
+  trueForZeroTo 1 (== '.') xs && isDigit (last xs)
+isReadableFloat (x:xs) = isDigit x && all isDigitOrDot xs &&
+  trueForZeroTo 1 (== '.') xs && isDigit (last xs)
 
 readInteger :: String -> Maybe Integer
-readInteger str = maybeIf (isReadableInteger str) (read str)
+readInteger str = justIf (isReadableInteger str) (read str)
 
 readDouble :: String -> Maybe Double
-readDouble str = maybeIf (isReadableFloat str) (read str)
+readDouble str = justIf (isReadableFloat str) (read str)
