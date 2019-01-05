@@ -14,7 +14,7 @@ getDate = do
 getDateStringYYYYMMDD :: String -> IO String
 getDateStringYYYYMMDD separator = do
   (year, month, day) <- getDate
-  return $ intercalate  separator [ show year
-                                  , showIntegralWZeros 2 month
-                                  , showIntegralWZeros 2 day
+  return $ intercalate  separator [ show (year :: Int)
+                                  , showIntegralWZeros 2 (month :: Int)
+                                  , showIntegralWZeros 2 (day :: Int)
                                   ]
