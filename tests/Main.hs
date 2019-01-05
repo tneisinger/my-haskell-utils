@@ -2,13 +2,12 @@
 
 module Main where
 
-import Test.Hspec
 import Test.QuickCheck
 import Test.QuickCheck.StringRandom (matchRegexp)
 import Data.Text (unpack)
 
-import MyUtils.Read
 import MyUtils.Console
+import Tests.Read
 
 prop_true :: Char -> Bool
 prop_true _ = True
@@ -23,9 +22,4 @@ main = do
   putStr "\n\n"
   quickCheck prop_true
   putStr "\n"
-  colorPutStr Red "RUNNING HSPEC..."
-  putStr "\n"
-  hspec $ do
-    describe "maybeRead" $ do
-      it "returns (Just 31) when given '31'" $ do
-        (maybeRead "31" :: Maybe Integer) `shouldBe` (Just 31)
+  testReadModule
