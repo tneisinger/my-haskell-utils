@@ -8,6 +8,7 @@ import Test.QuickCheck.StringRandom (matchRegexp)
 import Data.Text (unpack)
 
 import MyUtils.Read
+import MyUtils.Console
 
 prop_true :: Char -> Bool
 prop_true _ = True
@@ -17,9 +18,13 @@ tester = unpack <$> matchRegexp "(\\d|[a\\.]){1,3}"
 
 main :: IO ()
 main = do
-  putStrLn "\n\nRUNNING QUICKCHECK...\n"
+  putStr "\n\n"
+  colorPutStr Red "RUNNING QUICKCHECK..."
+  putStr "\n\n"
   quickCheck prop_true
-  putStrLn "\n\nRUNNING HSPEC...\n"
+  putStr "\n"
+  colorPutStr Red "RUNNING HSPEC..."
+  putStr "\n"
   hspec $ do
     describe "maybeRead" $ do
       it "returns (Just 31) when given '31'" $ do
