@@ -2,18 +2,17 @@ module MyUtils.Maybe where
 
 {-|
   This function abstracts out the common if-then-else pattern
-  when working with Maybe values.  Given a Bool @b@ and a value
-  of any type @result@, return @Just result@ if @b@ is True,
-  @Nothing@ if @b@ is False.
+  when working with Maybe values.  Given a predicate @p@ and
+  some value of any type @v@, return @Just v@ if @p v@ is True,
+  or @Nothing@ if @p v@ is False.
 
   Example:
 
-    > let f x = justIf (x > 3) x
-    > f 5
+    justIf (>4) 5
     Just 5
 
-    >f 2
+    >justIf (>4) 2
     Nothing
 -}
-justIf :: Bool -> a -> Maybe a
-justIf b result = if b then Just result else Nothing
+justIf :: (a -> Bool) -> a -> Maybe a
+justIf p v = if p v then Just v else Nothing
