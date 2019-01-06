@@ -8,6 +8,7 @@ import Data.Text (unpack)
 
 import MyUtils.Console
 import Tests.Read
+import Tests.List
 
 prop_true :: Char -> Bool
 prop_true _ = True
@@ -23,3 +24,4 @@ main = do
   quickCheck prop_true
   putStr "\n"
   testReadModule
+  testListModule
