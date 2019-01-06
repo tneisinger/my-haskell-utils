@@ -9,7 +9,7 @@ import MyUtils.Console
 
 testListModule :: IO ()
 testListModule = do
-  colorPutStrLn Red "Testing the List module..."
+  colorPutStrLn Red "\nTesting the List module..."
   hspec $ do
 
     describe "trueFor" $ do

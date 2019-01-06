@@ -9,7 +9,7 @@ import MyUtils.Console
 
 testReadModule :: IO ()
 testReadModule = do
-  colorPutStrLn Red "Testing the Read module..."
+  colorPutStrLn Red "\nTesting the Read module..."
   hspec $ do
     describe "maybeRead" $ do
       it "returns (Just 31) when given '31' and typed as Integer" $ do
