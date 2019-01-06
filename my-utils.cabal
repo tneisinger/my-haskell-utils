@@ -18,7 +18,6 @@ library
   ghc-options:         -Wall -fwarn-tabs -Wcompat -Wincomplete-record-updates
                        -Wincomplete-uni-patterns -Wredundant-constraints
   exposed-modules:     MyUtils.Maybe
-                     , MyUtils.Char
                      , MyUtils.Read
                      , MyUtils.List
                      , MyUtils.Show
