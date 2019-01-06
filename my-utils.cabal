@@ -41,6 +41,7 @@ test-suite tests
   hs-source-dirs:     tests
   other-modules:      Tests.Read
                     , Tests.List
+                    , Tests.Maybe
   ghc-options:        -threaded -rtsopts -with-rtsopts=-N -Wall
                       -fno-warn-orphans
   type:               exitcode-stdio-1.0

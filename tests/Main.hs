@@ -8,6 +8,7 @@ import Data.Text (unpack)
 
 import Tests.Read
 import Tests.List
+import Tests.Maybe
 
 prop_true :: Char -> Bool
 prop_true _ = True
@@ -20,3 +21,4 @@ main = do
   -- quickCheck prop_true
   testReadModule
   testListModule
+  testMaybeModule
