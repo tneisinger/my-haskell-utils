@@ -9,6 +9,7 @@ import Data.Text (unpack)
 import Tests.Read
 import Tests.List
 import Tests.Maybe
+import Tests.Show
 
 prop_true :: Char -> Bool
 prop_true _ = True
@@ -22,3 +23,4 @@ main = do
   testReadModule
   testListModule
   testMaybeModule
+  testShowModule
