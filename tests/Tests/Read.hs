@@ -33,7 +33,7 @@ return []
 
 testReadModule :: IO ()
 testReadModule = do
-  colorPutStrLn Red "\nTesting the Read module..."
+  colorPutStrLn Red "\nTesting the MyUtils.Read module..."
   _ <- $quickCheckAll
   hspec $ do
     describe "maybeRead" $ do
