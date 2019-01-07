@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
-module Tests.Maybe where
+module Tests.Maybe (testMaybeModule) where
 
 import Test.Hspec
 import Test.QuickCheck

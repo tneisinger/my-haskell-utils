@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
-module Tests.List where
+module Tests.List (testListModule) where
 
 import Test.Hspec
 
