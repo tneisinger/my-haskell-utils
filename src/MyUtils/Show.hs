@@ -1,6 +1,7 @@
 module MyUtils.Show where
 
 import Data.List (genericReplicate, genericLength)
+import MyUtils.Maybe (justIf)
 
 {- |
   Given the minimum desired string length (strLen) and an integral (i), return
@@ -15,13 +16,17 @@ import Data.List (genericReplicate, genericLength)
 
     > showIntegralWZeros 3 12345
     "12345"
+
+    > showIntegralWZeros 3 (-2)
+    "-002"
 -}
 showIntegralWZeros :: Integral a => a -> a -> String
 showIntegralWZeros strLen i =
   let i' = toInteger i
-      numZeros = strLen - genericLength (show i')
+      numZeros = strLen - genericLength (show $ abs i')
+      dashOrEmpty = if i' < 0 then "-" else ""
    in if numZeros > 0
-         then (genericReplicate numZeros '0') ++ (show i')
+         then dashOrEmpty ++ (genericReplicate numZeros '0') ++ (show $ abs i')
          else show i'
 
 {- |
@@ -38,12 +43,13 @@ showIntegralWZeros strLen i =
 
     > maybeShowIntegralWZeros 3 12345
     Nothing
+
+    > maybeShowIntegralWZeros 3 (-2)
+    Just "-002"
 -}
 maybeShowIntegralWZeros :: Integral a => a -> a -> Maybe String
 maybeShowIntegralWZeros strLen i =
-  let i' = toInteger i
-   in case compare strLen (genericLength (show i')) of
-        LT -> Nothing
-        EQ -> Just $ show i'
-        GT -> let numZeros = strLen - genericLength (show i')
-               in Just $ (genericReplicate numZeros '0') ++ (show i')
+  let result = showIntegralWZeros strLen i
+   in if i < 0
+         then justIf (\r -> genericLength r == strLen + 1) result
+         else justIf (\r -> genericLength r == strLen) result
