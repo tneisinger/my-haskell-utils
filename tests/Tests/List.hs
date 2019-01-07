@@ -1,15 +1,30 @@
+{-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
 module Tests.List (testListModule) where
 
 import Test.Hspec
+import Test.QuickCheck
 
 import MyUtils.List (trueFor, trueForZeroTo)
 import MyUtils.Console
 
+prop_trueFor :: Int -> [b] -> Bool
+prop_trueFor n xs =
+  trueFor n (const True) xs == (length xs == n)
+
+prop_trueForZeroTo :: Int -> [b] -> Bool
+prop_trueForZeroTo n xs =
+  trueForZeroTo n (const True) xs == (length xs <= n)
+
+-- This line is necessary in order for the forAllProperties function to work
+-- Something to do with template haskell
+return []
+
 testListModule :: IO ()
 testListModule = do
   colorPutStrLn Red "\nTesting the List module..."
+  _ <- $forAllProperties quickCheckResult
   hspec $ do
 
     describe "trueFor" $ do
