@@ -23,8 +23,8 @@ return []
 
 testListModule :: IO ()
 testListModule = do
-  colorPutStrLn Red "\nTesting the List module..."
-  _ <- $forAllProperties quickCheckResult
+  colorPutStrLn Red "\nTesting the MyUtils.List module..."
+  _ <- $quickCheckAll
   hspec $ do
 
     describe "trueFor" $ do
