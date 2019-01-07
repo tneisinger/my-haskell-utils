@@ -24,7 +24,7 @@ return []
 testMaybeModule :: IO ()
 testMaybeModule = do
   colorPutStrLn Red "\nTesting the MyUtils.Maybe module..."
-  _ <- $forAllProperties quickCheckResult
+  _ <- $quickCheckAll
   hspec $ do
     describe "justIf" $ do
       it "returns Just 'p' when given: (>'l') 'p'" $ do
