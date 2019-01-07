@@ -49,7 +49,7 @@ return []
 
 testShowModule :: IO ()
 testShowModule = do
-  colorPutStrLn Red "\nTesting the MyUtils.Maybe module..."
+  colorPutStrLn Red "\nTesting the MyUtils.Show module..."
   _ <- $forAllProperties quickCheckResult
   hspec $ do
     describe "showIntegralWZeros" $ do
