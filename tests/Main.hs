@@ -11,15 +11,8 @@ import Tests.List
 import Tests.Maybe
 import Tests.Show
 
-prop_true :: Char -> Bool
-prop_true _ = True
-
-tester :: Gen String
-tester = unpack <$> matchRegexp "(\\d|[a\\.]){1,3}"
-
 main :: IO ()
 main = do
-  -- quickCheck prop_true
   testReadModule
   testListModule
   testMaybeModule
