@@ -12,7 +12,6 @@ import MyUtils.Show (showIntegralWZeros)
 data DateFormat = YYYYMMDD | YYYYDDMM | YYMMDD | YYDDMM
   deriving (Eq, Show)
 
-
 {-|
   Given a UTCTime, return the (year, month, day)
 -}
@@ -20,7 +19,6 @@ getDateFromUTCTime :: Integral a => UTCTime -> (a, a, a)
 getDateFromUTCTime t =
   let (y, m ,d) = toGregorian . utctDay $ t
    in (fromIntegral y, fromIntegral m, fromIntegral d)
-
 
 {-|
   Given a DateFormat, a separator string, and a UTCTime, return
@@ -38,7 +36,6 @@ makeStrFromUTCTime fmt sep t =
         YYYYDDMM -> intercalate sep [yStr, dStr, mStr]
         YYMMDD   -> intercalate sep [drop 2 yStr, mStr, dStr]
         YYDDMM   -> intercalate sep [drop 2 yStr, dStr, mStr]
-
 
 {-|
   Given a DateFormat and a separator string, return today's date
