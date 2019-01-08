@@ -1,5 +1,6 @@
 module MyUtils.Time where
 
+
 import Data.List (intercalate)
 import Data.Time.Clock (getCurrentTime, utctDay, UTCTime)
 import Data.Time.Calendar (toGregorian)
@@ -43,4 +44,4 @@ makeStrFromUTCTime fmt sep t =
 -}
 getTodayStr :: DateFormat -> String -> IO String
 getTodayStr fmt sep =
-  getCurrentTime >>= return . makeStrFromUTCTime fmt sep
+  makeStrFromUTCTime fmt sep <$> getCurrentTime
