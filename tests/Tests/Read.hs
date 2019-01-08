@@ -35,30 +35,30 @@ testReadModule :: IO ()
 testReadModule = do
   colorPutStrLn Red "\nTesting the MyUtils.Read module..."
   _ <- $quickCheckAll
-  hspec $ do
+  hspec $
     describe "maybeRead" $ do
-      it "returns (Just 31) when given '31' and typed as Integer" $ do
+      it "returns (Just 31) when given '31' and typed as Integer" $
         (maybeRead "31" :: Maybe Integer) `shouldBe` Just 31
-      it "returns Nothing when given 'blarf' and typed as Integer" $ do
+      it "returns Nothing when given 'blarf' and typed as Integer" $
         (maybeRead "blarf" :: Maybe Integer) `shouldBe` Nothing
-      it "returns (Just 31) when given '31' and typed as Int" $ do
+      it "returns (Just 31) when given '31' and typed as Int" $
         (maybeRead "31" :: Maybe Int) `shouldBe` Just 31
-      it "returns Nothing when given '31' and typed as Bool" $ do
+      it "returns Nothing when given '31' and typed as Bool" $
         (maybeRead "31" :: Maybe Bool) `shouldBe` Nothing
-      it "returns (Just 0.37) when given '0.37' and typed as Double" $ do
+      it "returns (Just 0.37) when given '0.37' and typed as Double" $
         (maybeRead "0.37" :: Maybe Double) `shouldBe` Just 0.37
-      it "returns Nothing when given '0.37' and typed as Integer" $ do
+      it "returns Nothing when given '0.37' and typed as Integer" $
         (maybeRead "0.37" :: Maybe Integer) `shouldBe` Nothing
-      it "returns (Just True) when given 'True' and typed as Bool" $ do
+      it "returns (Just True) when given 'True' and typed as Bool" $
         (maybeRead "True" :: Maybe Bool) `shouldBe` Just True
-      it "returns (Just False) when given 'False' and typed as Bool" $ do
+      it "returns (Just False) when given 'False' and typed as Bool" $
         (maybeRead "False" :: Maybe Bool) `shouldBe` Just False
-      it "returns (Just GT) when given 'GT' and typed as Ordering" $ do
+      it "returns (Just GT) when given 'GT' and typed as Ordering" $
         (maybeRead "GT" :: Maybe Ordering) `shouldBe` Just GT
       it "returns (Just (Right 2)) when given 'Right 2' typed as \
-          \Either String Int" $ do
+          \Either String Int" $
         (maybeRead "Right 2" :: Maybe (Either String Int)) `shouldBe`
           Just (Right 2)
       it "returns (Just [GT, EQ]) when given '[GT, EQ]' \
-          \and typed as [Ordering]" $ do
+          \and typed as [Ordering]" $
         (maybeRead "[GT, EQ]" :: Maybe [Ordering]) `shouldBe` Just [GT, EQ]

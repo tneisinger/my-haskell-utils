@@ -26,7 +26,7 @@ showIntegralWZeros strLen i =
       numZeros = strLen - genericLength (show $ abs i')
       dashOrEmpty = if i' < 0 then "-" else ""
    in if numZeros > 0
-         then dashOrEmpty ++ (genericReplicate numZeros '0') ++ (show $ abs i')
+         then dashOrEmpty ++ genericReplicate numZeros '0' ++ show (abs i')
          else show i'
 
 {- |

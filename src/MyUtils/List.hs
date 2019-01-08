@@ -15,7 +15,7 @@ import Data.List (genericLength)
     False
 -}
 trueFor :: (Eq a, Num a) => a -> (b -> Bool) -> [b] -> Bool
-trueFor n p xs = (genericLength $ filter p xs) == n
+trueFor n p xs = genericLength (filter p xs) == n
 
 {-|
   Given a number n, a predicate p, and a list xs, return True
@@ -33,4 +33,4 @@ trueFor n p xs = (genericLength $ filter p xs) == n
     False
 -}
 trueForZeroTo :: (Ord a, Num a) => a -> (b -> Bool) -> [b] -> Bool
-trueForZeroTo n p xs = (genericLength $ filter p xs) <= n
+trueForZeroTo n p xs = genericLength (filter p xs) <= n

@@ -28,29 +28,29 @@ testListModule = do
   hspec $ do
 
     describe "trueFor" $ do
-      it "returns True for inputs: 2 (>3) [1,4,6,2,3]" $ do
+      it "returns True for inputs: 2 (>3) [1,4,6,2,3]" $
         trueFor 2 (>3) [1,4,6,2,3] `shouldBe` True
-      it "returns False for inputs: 3 (>3) [1,4,6,2,3]" $ do
+      it "returns False for inputs: 3 (>3) [1,4,6,2,3]" $
         trueFor 3 (>3) [1,4,6,2,3] `shouldBe` False
-      it "returns False for inputs: 1 (>3) [1,4,6,2,3]" $ do
+      it "returns False for inputs: 1 (>3) [1,4,6,2,3]" $
         trueFor 1 (>3) [1,4,6,2,3] `shouldBe` False
-      it "returns True for inputs: 2 (=='a') \"arcade\"" $ do
+      it "returns True for inputs: 2 (=='a') \"arcade\"" $
         trueFor 2 (=='a') "arcade" `shouldBe` True
-      it "returns False for inputs: 2 (=='a') \"banana\"" $ do
+      it "returns False for inputs: 2 (=='a') \"banana\"" $
         trueFor 2 (=='a') "banana" `shouldBe` False
-      it "returns False for inputs: 2 (=='a') \"apple\"" $ do
+      it "returns False for inputs: 2 (=='a') \"apple\"" $
         trueFor 2 (=='a') "apple" `shouldBe` False
 
     describe "trueForZeroTo" $ do
-      it "returns True for inputs: 2 (>3) [1,4,6,2,3]" $ do
+      it "returns True for inputs: 2 (>3) [1,4,6,2,3]" $
         trueForZeroTo 2 (>3) [1,4,6,2,3] `shouldBe` True
-      it "returns True for inputs: 3 (>3) [1,4,6,2,3]" $ do
+      it "returns True for inputs: 3 (>3) [1,4,6,2,3]" $
         trueForZeroTo 3 (>3) [1,4,6,2,3] `shouldBe` True
-      it "returns False for inputs: 1 (>3) [1,4,6,2,3]" $ do
+      it "returns False for inputs: 1 (>3) [1,4,6,2,3]" $
         trueForZeroTo 1 (>3) [1,4,6,2,3] `shouldBe` False
-      it "returns True for inputs: 2 (=='a') \"arcade\"" $ do
+      it "returns True for inputs: 2 (=='a') \"arcade\"" $
         trueForZeroTo 2 (=='a') "arcade" `shouldBe` True
-      it "returns False for inputs: 2 (=='a') \"banana\"" $ do
+      it "returns False for inputs: 2 (=='a') \"banana\"" $
         trueForZeroTo 2 (=='a') "banana" `shouldBe` False
-      it "returns True for inputs: 2 (=='a') \"apple\"" $ do
+      it "returns True for inputs: 2 (=='a') \"apple\"" $
         trueForZeroTo 2 (=='a') "apple" `shouldBe` True

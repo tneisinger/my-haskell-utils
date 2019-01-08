@@ -16,7 +16,7 @@ import MyUtils.Console
 
 getDateTuple :: Num a => IO (a, a, a)
 getDateTuple = do
-  (y, m, d) <- getCurrentTime >>= return . toGregorian .utctDay
+  (y, m, d) <- toGregorian . utctDay <$> getCurrentTime
   return (fromIntegral y, fromIntegral m, fromIntegral d)
 
 getTodayStrParts :: IO [String]
@@ -40,8 +40,7 @@ testTimeModule :: IO ()
 testTimeModule = do
   colorPutStrLn Red "\nTesting the MyUtils.Time module..."
   _ <- $quickCheckAll
-  return ()
-  hspec $ do
+  hspec $
     describe "getTodayStr" $ do
       it "returns today's date in YYYY-MM-DD format \
         \when given: YYYYMMDD \"-\"" $ do
@@ -51,18 +50,15 @@ testTimeModule = do
       it "returns today's date in YY/MM/DD format \
       \when given: YYMMDD \"/\"" $ do
           result <- getTodayStr YYMMDD "/"
-          y:m:d:[] <- getTodayStrParts
-          result `shouldBe` (intercalate "/" $ drop 2 y:m:d:[])
+          [y, m, d] <- getTodayStrParts
+          result `shouldBe` intercalate "/" [drop 2 y, m, d]
       it "returns today's date in YYDDMM format \
       \when given: YYDDMM \"\"" $ do
           result <- getTodayStr YYDDMM ""
-          y:m:d:[] <- getTodayStrParts
-          result `shouldBe` (mconcat $ drop 2 y:d:m:[])
+          [y, m, d] <- getTodayStrParts
+          result `shouldBe` mconcat [drop 2 y, d, m]
       it "returns today's date in YYYY.DD.MM format \
       \when given: YYYYDDMM \".\"" $ do
           result <- getTodayStr YYYYDDMM "."
-          y:m:d:[] <- getTodayStrParts
-          result `shouldBe` (intercalate "." $ y:d:m:[])
-
-
-
+          [y, m, d] <- getTodayStrParts
+          result `shouldBe` intercalate "." [y, d, m]
