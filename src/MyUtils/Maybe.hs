@@ -1,3 +1,14 @@
+{-|
+Module      : MyUtils.Maybe
+Description : Useful functions involving the Maybe type
+Copyright   : (c) Tyler Neisinger, 2018
+License     : GPL-3
+Maintainer  : tjneisi@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+This module contains useful functions involving the Maybe type.
+-}
 module MyUtils.Maybe where
 
 {-|

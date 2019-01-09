@@ -1,3 +1,14 @@
+{-|
+Module      : MyUtils.List
+Description : Useful functions for working with lists
+Copyright   : (c) Tyler Neisinger, 2018
+License     : GPL-3
+Maintainer  : tjneisi@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+This module contains useful functions for working with lists.
+-}
 module MyUtils.List where
 
 import Data.List (genericLength)

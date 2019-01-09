@@ -1,3 +1,14 @@
+{-|
+Module      : MyUtils.Read
+Description : Useful functions for reading to text into haskell types
+Copyright   : (c) Tyler Neisinger, 2018
+License     : GPL-3
+Maintainer  : tjneisi@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+This module contains useful functions for reading strings into haskell types.
+-}
 module MyUtils.Read where
 
 {-|

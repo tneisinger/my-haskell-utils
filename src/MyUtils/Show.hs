@@ -1,3 +1,15 @@
+{-|
+Module      : MyUtils.Show
+Description : Useful functions for showing different values
+Copyright   : (c) Tyler Neisinger, 2018
+License     : GPL-3
+Maintainer  : tjneisi@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+This module contains useful functions for converting different types into
+Strings in different ways.
+-}
 module MyUtils.Show where
 
 import Data.List (genericReplicate, genericLength)

@@ -1,5 +1,15 @@
-module MyUtils.Time where
+{-|
+Module      : MyUtils.Time
+Description : Useful functions involving times or dates
+Copyright   : (c) Tyler Neisinger, 2018
+License     : GPL-3
+Maintainer  : tjneisi@gmail.com
+Stability   : experimental
+Portability : POSIX
 
+This module contains useful functions for working with times or dates.
+-}
+module MyUtils.Time where
 
 import Data.List (intercalate)
 import Data.Time.Clock (getCurrentTime, utctDay, UTCTime)
