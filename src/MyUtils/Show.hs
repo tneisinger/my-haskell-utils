@@ -90,4 +90,3 @@ showDoubleRoundedTo n d =
    in case trimmed of
         ('.':_) -> reverse $ '0':trimmed
         _       -> reverse trimmed
-

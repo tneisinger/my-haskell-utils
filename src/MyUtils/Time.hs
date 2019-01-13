@@ -17,7 +17,7 @@ import Data.List (intercalate)
 import Data.Time.Clock (getCurrentTime, utctDay, UTCTime)
 import Data.Time.Calendar (toGregorian, Day)
 import Data.Time.Format (parseTimeM, defaultTimeLocale, ParseTime)
-import Data.Time.LocalTime (LocalTime(..), TimeOfDay, localTimeToUTC,
+import Data.Time.LocalTime (LocalTime(..), TimeOfDay(..), localTimeToUTC,
                             getCurrentTimeZone, midnight)
 import Control.Monad.Fail
 
@@ -135,3 +135,17 @@ dayAndTimeToUTC :: Day -> TimeOfDay -> IO UTCTime
 dayAndTimeToUTC day timeOfDay = do
   tz <- getCurrentTimeZone
   return . localTimeToUTC tz $ LocalTime day timeOfDay
+
+{-|
+  Given a TimeOfDay, return a string that expresses the hour, minute, and am
+  or pm.
+
+  Example, if given a TimeOfDay for 16:05:25 (military time), this function
+  would return: "4:05pm"
+-}
+timeOfDayToAmPmStr :: TimeOfDay -> String
+timeOfDayToAmPmStr (TimeOfDay h m _) =
+  case compare h 12 of
+    LT -> show h ++ ":" ++ showIntegralWZeros 2 m ++ "am"
+    EQ -> show h ++ ":" ++ showIntegralWZeros 2 m ++ "pm"
+    GT -> show (h - 12) ++ ":" ++ showIntegralWZeros 2 m ++ "pm"
