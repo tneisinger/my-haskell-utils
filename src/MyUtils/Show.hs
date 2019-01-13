@@ -12,6 +12,7 @@ Strings in different ways.
 -}
 module MyUtils.Show where
 
+import Text.Printf (printf)
 import Data.List (genericReplicate, genericLength)
 import MyUtils.Maybe (justIf)
 
@@ -65,3 +66,28 @@ maybeShowIntegralWZeros strLen i =
    in if i < 0
          then justIf (\r -> genericLength r == strLen + 1) result
          else justIf (\r -> genericLength r == strLen) result
+
+{-|
+  This function will return a String representation of a Double value rounded
+  to n or fewer decimal places.  After the tenths place, zeros will be cropped.
+
+  Examples:
+
+    > showDoubleRoundedTo 3 23.40000001
+    "23.4"
+
+    > showDoubleRoundedTo 3 23.45879
+    "23.459"
+
+    > showDoubleRoundedTo 5 23.000
+    "23.0"
+-}
+showDoubleRoundedTo :: Int -> Double -> String
+showDoubleRoundedTo n d =
+  let trimmed = dropWhile (=='0') $ reverse $ printf ("%." ++ show n ++ "f") d
+   -- In the line above we removed all trailing zeros, but we want to put one
+   -- back if we removed the tenths-place zero.
+   in case trimmed of
+        ('.':_) -> reverse $ '0':trimmed
+        _       -> reverse trimmed
+

@@ -68,3 +68,10 @@ testShowModule = do
       it "returns Just \"-002\" when given: 3 (-2)" $
         maybeShowIntegralWZeros 3 (-2) `shouldBe` Just "-002"
 
+    describe "showDoubleRoundedTo" $ do
+      it "returns \"23.4\" when given: 3 23.40000001" $
+        showDoubleRoundedTo 3 23.40000001 `shouldBe` "23.4"
+      it "returns \"23.459\" when given: 3 23.45879" $
+        showDoubleRoundedTo 3 23.45879 `shouldBe` "23.459"
+      it "returns \"23.0\" when given: 3 23.000" $
+        showDoubleRoundedTo 3 23.000 `shouldBe` "23.0"
