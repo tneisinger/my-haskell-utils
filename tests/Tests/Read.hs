@@ -35,7 +35,7 @@ testReadModule :: IO ()
 testReadModule = do
   colorPutStrLn Red "\nTesting the MyUtils.Read module..."
   _ <- $quickCheckAll
-  hspec $
+  hspec $ do
     describe "maybeRead" $ do
       it "returns (Just 31) when given '31' and typed as Integer" $
         (maybeRead "31" :: Maybe Integer) `shouldBe` Just 31
@@ -62,3 +62,14 @@ testReadModule = do
       it "returns (Just [GT, EQ]) when given '[GT, EQ]' \
           \and typed as [Ordering]" $
         (maybeRead "[GT, EQ]" :: Maybe [Ordering]) `shouldBe` Just [GT, EQ]
+
+    describe "eitherRead" $ do
+      it "(eitherRead \"err\" \"31\" :: Either String Integer) \
+        \RETURNS: Right 31" $
+        (eitherRead "err" "31" :: Either String Integer) `shouldBe` Right 31
+      it "(eitherRead \"err\" \"NaN\" :: Either String Integer) \
+        \RETURNS: Left \"err\"" $
+        (eitherRead "err" "NaN" :: Either String Integer) `shouldBe` Left "err"
+      it "(eitherRead \"err\" \"31F\" :: Either String Integer) \
+        \RETURNS: Left \"err\"" $
+        (eitherRead "err" "31F" :: Either String Integer) `shouldBe` Left "err"
